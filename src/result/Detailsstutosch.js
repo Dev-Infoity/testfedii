@@ -776,7 +776,7 @@ export const ResultDetailsStutoSchPage = () => {
 
                                                 
                                                             <div>
-                                                                <h5 className="rsltmdltbdv2dv5-2d3">Question {tcr.sno}</h5>
+                                                                <h5 className="rsltmdltbdv2dv5-2d3">Question {tcr.questionnum}</h5>
                                                                 <div className="col-sm-12">
                                                                     <p className="rsltmdltbdv2dv5-2d3p">{tcr.question}</p>
                                                                 

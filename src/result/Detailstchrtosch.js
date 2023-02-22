@@ -242,7 +242,7 @@ export const ResultDetailsTchrtoSchPage = () => {
                                             {overallscore}
                                             <span className="rsl-dv1spn">Score (%)</span>
                                         </div>
-                                        <ArcProgress className="rsl-dv2" progress={progress} thickness={20} fillColor={arcFillColor} style={{ position: "relative", height: 150, width: 150 }} />
+                                        <ArcProgress className="rsl-dv2" progress={overallscore/100} thickness={20} fillColor={arcFillColor} style={{ position: "relative", height: 150, width: 150 }} />
                                     </div>
                                     <div className="col-sm-6 p-0">
                                         <div className="rsl-dv3">

@@ -443,7 +443,8 @@ table.rslt-tbldv3tbl tbody tr {
     stroke-linecap: round;
     transition-duration: 0.5s;
     stroke-dasharray: 301.593px, 301.593px;
-    stroke-dashoffset: 241.274px;
+    /* stroke-dashoffset: 241.274px; */
+    stroke-dashoffset: 301.593px;
     stroke: #54d4f2;
   }
   .rsltmdltbdv2ulbtndv3-1 {

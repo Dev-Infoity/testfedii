@@ -106,7 +106,7 @@ export const Userprofile = () => {
         $('#contact_open').hide();
     }
 
-
+    
 
   const [image, setImage] = useState('https://res.cloudinary.com/infoi/image/upload/v1643706338/Profile%20Icon/Icon-150x150_o33qvq.png');
   const [loading, setLoading] = useState(false);
@@ -115,56 +115,102 @@ export const Userprofile = () => {
   const handleImageChange = async (event) => {
     setLoading(true);
 
-    const file = event.target.files[0];
+    // $.ajax({
+    //     type: "POST",
+    //     url: "https://entity-feediiapi.azurewebsites.net/api/Admin/Update_SchoolProfile",
+    //     data: new FormData($("form")[0]),
+    //     processData: false,
+    //     contentType: false,
+    //     success: function(response) {
+    //     setImage(response.data.imageUrl);
+    //     },
+    //     error: function(error) {
+    //     console.error(error);
+    //     }
+    // });
 
-    const publicIdMatch = image.match(/\/v\d+\/(.+)\.\w+$/);
-    const publicId = publicIdMatch[1];
-    console.log(`Public ID: ${publicId}`);
+    // const formData = new FormData();
+    // formData.append("imageurl", event.target.files[0]);
+    // formData.append("schoolId ", schoolidtosend);
+    // console.log(event.target.files[0]);
+    
+    // fetch('https://entity-feediiapi.azurewebsites.net/api/Admin/Update_SchoolProfile', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   },
+    //   body: formData
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     setImage(data.imageUrl);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
 
-    const cloudName = 'duwznqayj';
-    const apiKey = '631287544163282';
-    const apiSecret = 'f5qAmV6Cfq6fEsOqfqufYi1agy4';
+        // const formData = new FormData();
+        // formData.append("schoolId", schoolidtosend);
+        // formData.append("imageurl", event.target.files[0]);
 
+        // fetch('https://entity-feediiapi.azurewebsites.net/api/Admin/Update_SchoolProfile', {
+        // method: 'POST',
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // },
+        // body: formData
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     setImage(data.imageUrl);
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
 
-    fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`, {
-        method: 'DELETE',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        public_id: publicId,
+        const apiKey = '612313178146838';
+        const apiSecret = 'LPrPvDp16y0aUQ6Eqq9vL_IpP38';
+        const presetName = 'profilepic';
+
+        axios.post('https://api.cloudinary.com/v1_1/infoi/signed_upload_presets', {
         api_key: apiKey,
-        api_secret: apiSecret,
-        }),
-      })
-    .then((response) => {
-        console.log(response);
-
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'xjvzqqih');
-        fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`, {
-            method: 'POST',
-            body: formData,
+        preset_name: presetName
+        }, {
+        auth: {
+            username: apiKey,
+            password: apiSecret
+        }
         })
-        
-        .then((response) => response.json())
-        .then((data) => setImage(data.secure_url))
-        .catch((error) => console.error(error));
-    
-        setLoading(false);
+        .then(res => {
+            //console.log(res.data.signed_upload_preset);
+        })
+        .catch(err => {
+            console.error(err);
+        });
 
+        // const formData = new FormData();
+        // formData.append("imageurl", event.target.files[0]);
+        // formData.append('upload_preset', 'your_signed_upload_preset');
 
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+        // fetch('https://api.cloudinary.com/v1_1/infoi/612313178146838', {
+        // method: 'POST',
+        // body: formData
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     setImage(data.secure_url);
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
 
+    //setImage('https://img.freepik.com/free-vector/school-building-road-scene_25030-39841.jpg?w=2000');
 
-    
+    setLoading(false);
   };
-
-  
 
     return <div>
         <Headerdashboard />
@@ -177,7 +223,7 @@ export const Userprofile = () => {
                     <div style={{position: 'relative'}}>
                         <div style={{inset: 0}}>
                         <div className="tblt-vw-prfl1-dv" style={{height: 152, width: 152, marginBottom: 8, marginLeft: 'auto'}}>
-                            <div style={{boxSizing: 'border-box', opacity: 1, boxShadow: 'rgb(214,222,233) 0px 0px 0px 2px', display: 'flex', WebkitBoxPack: 'center', justifyContent: 'center', WebkitBoxAlign: 'center', alignItems: 'center', fontSize: 48, lineHeight: 1, fontWeight: 700, textTransform: 'none', letterSpacing: 'normal', color: 'rgb(255, 255, 255)', width: 152, minWidth: 152, minHeight: 152, height: 152}}>
+                            {/* <div style={{boxSizing: 'border-box', opacity: 1, boxShadow: 'rgb(214,222,233) 0px 0px 0px 2px', display: 'flex', WebkitBoxPack: 'center', justifyContent: 'center', WebkitBoxAlign: 'center', alignItems: 'center', fontSize: 48, lineHeight: 1, fontWeight: 700, textTransform: 'none', letterSpacing: 'normal', color: 'rgb(255, 255, 255)', width: 152, minWidth: 152, minHeight: 152, height: 152}}>
                             
                                 <div className="cngimghvrdvvdvd">
                                     {loading && <div className="loader"></div>}
@@ -187,10 +233,10 @@ export const Userprofile = () => {
                                         <input type="file" accept="image/*" className="imgdvpfll" ref={inputRef} onChange={handleImageChange} />
                                     </div>
                                 </div>
-                            </div>
-                            {/* <div style={{boxSizing: 'border-box', opacity: 1, boxShadow: 'rgb(214,222,233) 0px 0px 0px 2px', display: 'flex', WebkitBoxPack: 'center', justifyContent: 'center', WebkitBoxAlign: 'center', alignItems: 'center', fontSize: 48, lineHeight: 1, fontWeight: 700, textTransform: 'none', letterSpacing: 'normal', color: 'rgb(255, 255, 255)', width: 152, minWidth: 152, minHeight: 152, height: 152}}>
-                                <img src="https://res.cloudinary.com/infoi/image/upload/v1643706338/Profile%20Icon/Icon-150x150_o33qvq.png" style={{borderRadius: '50%'}} />
                             </div> */}
+                            <div style={{boxSizing: 'border-box', borderRadius: '50%', opacity: 1, boxShadow: 'rgb(214,222,233) 0px 0px 0px 2px', display: 'flex', WebkitBoxPack: 'center', justifyContent: 'center', WebkitBoxAlign: 'center', alignItems: 'center', fontSize: 48, lineHeight: 1, fontWeight: 700, textTransform: 'none', letterSpacing: 'normal', color: 'rgb(255, 255, 255)', width: 152, minWidth: 152, minHeight: 152, height: 152}}>
+                                <img src="https://res.cloudinary.com/infoi/image/upload/v1643706338/Profile%20Icon/Icon-150x150_o33qvq.png" style={{borderRadius: '50%'}} />
+                            </div>
                         </div>
                         </div>
                     </div>
